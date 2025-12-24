@@ -1,0 +1,159 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  name              String
+  phone             String?
+  telegramUsername  String?
+  whatsappNumber    String?
+  password          String
+  isApproved        Boolean  @default(false)
+  registrationFee   Boolean  @default(false)
+  paymentMethod     String?
+  paymentScreenshot String?
+  paymentApproved   Boolean  @default(false)
+  departmentId      String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  department        Department? @relation(fields: [departmentId], references: [id])
+  assignments       Assignment[]
+  announcements     Announcement[]
+  payments          Payment[]
+
+  @@map("users")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model Department {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+  serviceFee  Int    @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       User[]
+  assignments Assignment[]
+
+  @@map("departments")
+}
+
+model Assignment {
+  id                String            @id @default(cuid())
+  code              String            @unique @default(cuid())
+  title             String
+  description       String
+  files             String[]          @default([])
+  comments          String?
+  submitterName     String?
+  submitterPhone    String?
+  submitterEmail    String?
+  submitterTelegram String?
+  submitterWhatsApp String?
+  status            AssignmentStatus  @default(PENDING)
+  isApprovedByAdmin Boolean           @default(false)
+  solutionDelivered Boolean           @default(false)
+  approvalScreenshot String?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  departmentId      String
+  assignedToId      String?
+
+  department        Department @relation(fields: [departmentId], references: [id])
+  assignedTo        User?      @relation(fields: [assignedToId], references: [id])
+  aiDetectionReport AiDetectionReport?
+  payment           Payment?
+
+  @@map("assignments")
+}
+
+model Comment {
+  id           String   @id @default(cuid())
+  content      String
+  assignmentId String
+  submitterName String?
+  isFromMaker  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  @@map("comments")
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  fromId    String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  from      User @relation(fields: [fromId], references: [id])
+
+  @@map("announcements")
+}
+
+model Payment {
+  id           String      @id @default(cuid())
+  amount       Int
+  type         PaymentType
+  status       PaymentStatus @default(PENDING)
+  assignmentId String?     @unique
+  userId       String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  assignment   Assignment? @relation(fields: [assignmentId], references: [id])
+  user         User        @relation(fields: [userId], references: [id])
+
+  @@map("payments")
+}
+
+model AiDetectionReport {
+  id           String @id @default(cuid())
+  assignmentId String @unique
+  result       String
+  confidence   Float
+  details      String?
+  createdAt    DateTime @default(now())
+
+  assignment   Assignment @relation(fields: [assignmentId], references: [id])
+
+  @@map("ai_detection_reports")
+}
+
+enum AssignmentStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  REJECTED
+}
+
+enum PaymentType {
+  REGISTRATION_FEE
+  COMMISSION
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
