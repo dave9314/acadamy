@@ -12,12 +12,8 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
     "db:migrate": "prisma migrate deploy",
-    "db:reset": "node reset-database.js",
-    "db:update": "node update-database.js",
-    "test:reports": "node test-reports-api.js",
-    "setup": "node setup.js",
     "postinstall": "prisma generate",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build"
+    "vercel-build": "prisma generate && prisma db push && next build"
   },
   "dependencies": {
     "next": "14.0.4",

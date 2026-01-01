@@ -1,14 +1,6 @@
 {
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/report/page": "app/report/page.js",
   "/page": "app/page.js",
-  "/api/reports/route": "app/api/reports/route.js",
   "/auth/signin/page": "app/auth/signin/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/api/admin/users/route": "app/api/admin/users/route.js",
-  "/api/assignments/route": "app/api/assignments/route.js",
-  "/api/departments/route": "app/api/departments/route.js",
-  "/api/announcements/route": "app/api/announcements/route.js",
-  "/api/balance/route": "app/api/balance/route.js",
-  "/api/reports/[id]/route": "app/api/reports/[id]/route.js"
+  "/admin/page": "app/admin/page.js"
 }
