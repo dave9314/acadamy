@@ -35,11 +35,24 @@ export default function RegisterPage() {
 
   const fetchDepartments = async () => {
     try {
+      console.log('Fetching departments...')
       const response = await fetch('/api/departments')
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
       const data = await response.json()
-      setDepartments(data)
+      console.log('Departments fetched:', data)
+      setDepartments(data || [])
+      
+      if (!data || data.length === 0) {
+        toast.error('No departments available. Please contact support.')
+      }
     } catch (error) {
-      console.error('Failed to fetch departments')
+      console.error('Failed to fetch departments:', error)
+      toast.error('Failed to load departments. Please refresh the page.')
+      setDepartments([])
     }
   }
 
@@ -105,27 +118,47 @@ export default function RegisterPage() {
       uploadData.append('password', formData.password)
       uploadData.append('name', formData.name)
       uploadData.append('phone', formData.phone)
-      uploadData.append('telegramUsername', formData.telegramUsername)
-      uploadData.append('whatsappNumber', formData.whatsappNumber)
+      uploadData.append('telegramUsername', formData.telegramUsername || '')
+      uploadData.append('whatsappNumber', formData.whatsappNumber || '')
       uploadData.append('departmentId', formData.departmentId)
       uploadData.append('paymentMethod', formData.paymentMethod)
       uploadData.append('paymentScreenshot', formData.paymentScreenshot)
 
+      console.log('Submitting registration...')
+      
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         body: uploadData
       })
 
       const data = await response.json()
+      console.log('Registration response:', data)
 
       if (response.ok) {
-        toast.success('Registration successful! Please wait for admin approval of your payment.')
-        router.push('/auth/signin')
+        toast.success(data.message || 'Registration successful! Please wait for admin approval.')
+        // Clear form data
+        setFormData({
+          email: '',
+          password: '',
+          name: '',
+          phone: '',
+          telegramUsername: '',
+          whatsappNumber: '',
+          departmentId: '',
+          paymentMethod: '',
+          paymentScreenshot: null
+        })
+        setPreviewUrl(null)
+        // Redirect to login after a short delay
+        setTimeout(() => {
+          router.push('/auth/signin?message=registration-success')
+        }, 2000)
       } else {
-        toast.error(data.error || 'Registration failed')
+        toast.error(data.error || 'Registration failed. Please try again.')
       }
     } catch (error) {
-      toast.error('Registration failed')
+      console.error('Registration error:', error)
+      toast.error('Registration failed. Please check your connection and try again.')
     } finally {
       setLoading(false)
     }

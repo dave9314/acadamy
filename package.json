@@ -12,6 +12,7 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
     "db:migrate": "prisma migrate deploy",
+    "seed:departments": "node seed-departments.js",
     "postinstall": "prisma generate",
     "deploy-setup": "node deploy-setup.js",
     "vercel-build": "node deploy-setup.js && next build"

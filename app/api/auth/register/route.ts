@@ -3,11 +3,10 @@ import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
-import { error } from 'console'
 
 export async function POST(request: NextRequest) {
   try {
-    console.error('Registration error:', error)
+    console.log('Registration request received')
     
     let body: any = {}
     let paymentScreenshot: File | null = null
@@ -155,31 +154,49 @@ export async function POST(request: NextRequest) {
     
     // Handle file upload if present
     if (paymentScreenshot && paymentScreenshot.size > 0) {
-      console.log('Processing payment screenshot upload')
+      console.log('Processing payment screenshot upload, file size:', paymentScreenshot.size)
       
       try {
+        // Validate file type
+        if (!paymentScreenshot.type.startsWith('image/')) {
+          return NextResponse.json(
+            { error: 'Payment screenshot must be an image file' },
+            { status: 400 }
+          )
+        }
+
+        // Validate file size (5MB limit)
+        if (paymentScreenshot.size > 5 * 1024 * 1024) {
+          return NextResponse.json(
+            { error: 'Payment screenshot must be less than 5MB' },
+            { status: 400 }
+          )
+        }
+
         const bytes = await paymentScreenshot.arrayBuffer()
         const buffer = Buffer.from(bytes)
         
-        // Create unique filename
-        const filename = `payment_${Date.now()}_${paymentScreenshot.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
+        // Create unique filename with proper extension
+        const fileExtension = paymentScreenshot.name.split('.').pop() || 'jpg'
+        const filename = `payment_${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExtension}`
         const uploadsDir = join(process.cwd(), 'public', 'uploads')
         const filePath = join(uploadsDir, filename)
         
         // Ensure uploads directory exists
         try {
           await mkdir(uploadsDir, { recursive: true })
-        } catch (error) {
-          // Directory might already exist
+          console.log('Uploads directory ensured')
+        } catch (mkdirError) {
+          console.log('Uploads directory already exists or created')
         }
         
         await writeFile(filePath, buffer)
         screenshotPath = `/uploads/${filename}`
-        console.log('Screenshot saved:', screenshotPath)
+        console.log('Screenshot saved successfully:', screenshotPath)
       } catch (fileError) {
         console.error('File upload error:', fileError)
         return NextResponse.json(
-          { error: 'Failed to upload payment screenshot' },
+          { error: 'Failed to upload payment screenshot. Please try again.' },
           { status: 500 }
         )
       }
@@ -197,7 +214,7 @@ export async function POST(request: NextRequest) {
         whatsappNumber: whatsappNumber || null,
         departmentId,
         isApproved: false,
-        registrationFee: false,
+        registrationFee: !!screenshotPath, // Set to true if screenshot was uploaded
         paymentMethod: paymentMethod || null,
         paymentScreenshot: screenshotPath,
         paymentApproved: false
@@ -210,16 +227,17 @@ export async function POST(request: NextRequest) {
     console.log('User created successfully:', user.id)
     
     return NextResponse.json({
-      message: paymentScreenshot 
-        ? 'Registration successful! Please wait for admin approval of your payment and account.'
-        : 'User registered successfully. Please wait for admin approval.',
+      message: screenshotPath 
+        ? 'Registration successful! Your payment screenshot has been uploaded. Please wait for admin approval.'
+        : 'Registration successful! Please complete your payment and upload the screenshot.',
       user: {
         id: user.id,
         email: user.email,
         name: user.name,
         department: user.department?.name,
         isApproved: user.isApproved,
-        paymentApproved: user.paymentApproved
+        paymentApproved: user.paymentApproved,
+        registrationFee: user.registrationFee
       }
     })
     
@@ -239,6 +257,13 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           { error: 'Invalid department selected' },
           { status: 400 }
+        )
+      }
+
+      if (error.message.includes('ENOENT') || error.message.includes('permission')) {
+        return NextResponse.json(
+          { error: 'File upload failed. Please try again.' },
+          { status: 500 }
         )
       }
     }
