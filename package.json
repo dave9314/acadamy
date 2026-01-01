@@ -13,7 +13,8 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:migrate": "prisma migrate deploy",
     "postinstall": "prisma generate",
-    "vercel-build": "prisma generate && prisma db push && next build"
+    "deploy-setup": "node deploy-setup.js",
+    "vercel-build": "node deploy-setup.js && next build"
   },
   "dependencies": {
     "next": "14.0.4",
