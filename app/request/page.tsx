@@ -158,16 +158,24 @@ export default function RequestPage() {
   const selectedMakerData = makers.find(m => m.id === selectedMaker)
 
   return (
-    <div className="min-h-screen bg-academic-50">
+    <div className="min-h-screen bg-sapphire-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2 text-primary-600 hover:text-primary-700">
+            <Link href="/" className="flex items-center space-x-2 text-sapphire-600 hover:text-sapphire-700">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Home</span>
             </Link>
-            <h1 className="text-2xl font-bold text-academic-900">Submit Assignment</h1>
+            <div className="flex items-center space-x-4">
+              <Link 
+                href="/report" 
+                className="px-4 py-2 text-red-600 hover:text-red-800 rounded-lg transition-all duration-300 font-medium hover:bg-red-50"
+              >
+                Report Issue
+              </Link>
+              <h1 className="text-2xl font-bold text-sapphire-900">Submit Assignment</h1>
+            </div>
           </div>
         </div>
       </header>
@@ -183,25 +191,25 @@ export default function RequestPage() {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center text-sm font-medium">1</div>
-                  <span className="text-sm font-medium text-academic-900">Select Department</span>
+                  <div className="w-8 h-8 bg-sapphire-600 text-white rounded-full flex items-center justify-center text-sm font-medium">1</div>
+                  <span className="text-sm font-medium text-sapphire-900">Select Department</span>
                 </div>
-                <div className="w-8 h-px bg-academic-300"></div>
+                <div className="w-8 h-px bg-sapphire-300"></div>
                 <div className="flex items-center space-x-2">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                    selectedDepartment ? 'bg-primary-600 text-white' : 'bg-academic-200 text-academic-500'
+                    selectedDepartment ? 'bg-sapphire-600 text-white' : 'bg-sapphire-200 text-sapphire-500'
                   }`}>2</div>
                   <span className={`text-sm font-medium ${
-                    selectedDepartment ? 'text-academic-900' : 'text-academic-500'
+                    selectedDepartment ? 'text-sapphire-900' : 'text-sapphire-500'
                   }`}>Choose Maker</span>
                 </div>
-                <div className="w-8 h-px bg-academic-300"></div>
+                <div className="w-8 h-px bg-sapphire-300"></div>
                 <div className="flex items-center space-x-2">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                    selectedMaker ? 'bg-primary-600 text-white' : 'bg-academic-200 text-academic-500'
+                    selectedMaker ? 'bg-sapphire-600 text-white' : 'bg-sapphire-200 text-sapphire-500'
                   }`}>3</div>
                   <span className={`text-sm font-medium ${
-                    selectedMaker ? 'text-academic-900' : 'text-academic-500'
+                    selectedMaker ? 'text-sapphire-900' : 'text-sapphire-500'
                   }`}>Submit Details</span>
                 </div>
               </div>
@@ -211,7 +219,7 @@ export default function RequestPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Department Selection */}
             <div className="card">
-              <h2 className="text-xl font-semibold text-academic-900 mb-4">Select Department</h2>
+              <h2 className="text-xl font-semibold text-sapphire-900 mb-4">Select Department</h2>
               <select
                 value={selectedDepartment}
                 onChange={(e) => setSelectedDepartment(e.target.value)}
@@ -234,7 +242,7 @@ export default function RequestPage() {
                 animate={{ opacity: 1, height: 'auto' }}
                 className="card"
               >
-                <h2 className="text-xl font-semibold text-academic-900 mb-4">Choose Assignment Maker</h2>
+                <h2 className="text-xl font-semibold text-sapphire-900 mb-4">Choose Assignment Maker</h2>
                 {makers.length > 0 ? (
                   <div className="space-y-4">
                     <select
@@ -253,23 +261,23 @@ export default function RequestPage() {
                     
                     {/* Show selected maker details */}
                     {selectedMaker && (
-                      <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
-                        <h3 className="font-semibold text-blue-900 mb-3">Selected Assignment Maker</h3>
+                      <div className="bg-gradient-to-r from-sapphire-50 to-sapphire-100 border border-sapphire-200 rounded-lg p-4">
+                        <h3 className="font-semibold text-sapphire-900 mb-3">Selected Assignment Maker</h3>
                         {makers.filter(m => m.id === selectedMaker).map(maker => (
                           <div key={maker.id} className="space-y-3">
-                            <div className="grid grid-cols-2 gap-4 text-sm text-blue-800">
+                            <div className="grid grid-cols-2 gap-4 text-sm text-sapphire-800">
                               <div><strong>Name:</strong> {maker.name}</div>
                               <div><strong>Service Fee:</strong> {maker.department.serviceFee} Birr</div>
                               <div><strong>Phone:</strong> {maker.phone}</div>
                               <div><strong>Department:</strong> {maker.department.name}</div>
                             </div>
                             
-                            <div className="border-t border-blue-200 pt-3">
-                              <p className="text-sm font-semibold text-blue-900 mb-2">📱 Solution Delivery Channels:</p>
+                            <div className="border-t border-sapphire-200 pt-3">
+                              <p className="text-sm font-semibold text-sapphire-900 mb-2">📱 Solution Delivery Channels:</p>
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                                 {maker.telegramUsername && (
-                                  <div className="flex items-center space-x-2 bg-blue-100 rounded-lg p-2">
-                                    <span className="text-blue-600">📱</span>
+                                  <div className="flex items-center space-x-2 bg-sapphire-100 rounded-lg p-2">
+                                    <span className="text-sapphire-600">📱</span>
                                     <span><strong>Telegram:</strong> @{maker.telegramUsername}</span>
                                   </div>
                                 )}
@@ -280,7 +288,7 @@ export default function RequestPage() {
                                   </div>
                                 )}
                               </div>
-                              <p className="text-xs text-blue-700 mt-2 italic">
+                              <p className="text-xs text-sapphire-700 mt-2 italic">
                                 * Your completed assignment will be delivered through one of these channels
                               </p>
                             </div>
@@ -310,10 +318,10 @@ export default function RequestPage() {
               >
                 {/* Contact Information */}
                 <div className="card">
-                  <h2 className="text-xl font-semibold text-academic-900 mb-4">Your Contact Information</h2>
+                  <h2 className="text-xl font-semibold text-sapphire-900 mb-4">Your Contact Information</h2>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-academic-700 mb-2">
+                      <label className="block text-sm font-medium text-sapphire-700 mb-2">
                         Full Name *
                       </label>
                       <input
@@ -325,7 +333,7 @@ export default function RequestPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-academic-700 mb-2">
+                      <label className="block text-sm font-medium text-sapphire-700 mb-2">
                         Phone Number *
                       </label>
                       <input
@@ -337,7 +345,7 @@ export default function RequestPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-academic-700 mb-2">
+                      <label className="block text-sm font-medium text-sapphire-700 mb-2">
                         Email Address (Optional)
                       </label>
                       <input
@@ -348,7 +356,7 @@ export default function RequestPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-academic-700 mb-2">
+                      <label className="block text-sm font-medium text-sapphire-700 mb-2">
                         Telegram Username *
                       </label>
                       <input
@@ -360,7 +368,7 @@ export default function RequestPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-academic-700 mb-2">
+                      <label className="block text-sm font-medium text-sapphire-700 mb-2">
                         WhatsApp Number *
                       </label>
                       <input
@@ -371,14 +379,14 @@ export default function RequestPage() {
                         placeholder="WhatsApp number (for communication)"
                       />
                     </div>
-                    <div className="md:col-span-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-4">
+                    <div className="md:col-span-2 bg-gradient-to-r from-sapphire-50 to-sapphire-100 border border-sapphire-200 rounded-xl p-4">
                       <div className="flex items-start space-x-3">
-                        <div className="text-blue-600 mt-0.5">📱</div>
+                        <div className="text-sapphire-600 mt-0.5">📱</div>
                         <div>
-                          <p className="text-blue-900 text-sm font-semibold mb-1">
+                          <p className="text-sapphire-900 text-sm font-semibold mb-1">
                             Communication Required
                           </p>
-                          <p className="text-blue-800 text-sm">
+                          <p className="text-sapphire-800 text-sm">
                             <strong>Telegram username OR WhatsApp number is mandatory</strong> - The assignment maker will use these to communicate with you about your assignment progress and delivery.
                           </p>
                         </div>
@@ -389,10 +397,10 @@ export default function RequestPage() {
 
                 {/* Assignment Details */}
                 <div className="card">
-                  <h2 className="text-xl font-semibold text-academic-900 mb-4">Assignment Details</h2>
+                  <h2 className="text-xl font-semibold text-sapphire-900 mb-4">Assignment Details</h2>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-academic-700 mb-2">
+                      <label className="block text-sm font-medium text-sapphire-700 mb-2">
                         Assignment Title *
                       </label>
                       <input
@@ -405,7 +413,7 @@ export default function RequestPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-academic-700 mb-2">
+                      <label className="block text-sm font-medium text-sapphire-700 mb-2">
                         Description *
                       </label>
                       <textarea
@@ -418,7 +426,7 @@ export default function RequestPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-academic-700 mb-2">
+                      <label className="block text-sm font-medium text-sapphire-700 mb-2">
                         Additional Comments
                       </label>
                       <textarea
@@ -434,35 +442,35 @@ export default function RequestPage() {
 
                 {/* File Upload */}
                 <div className="card">
-                  <h2 className="text-xl font-semibold text-academic-900 mb-4">Upload Files</h2>
+                  <h2 className="text-xl font-semibold text-sapphire-900 mb-4">Upload Files</h2>
                   <div
                     {...getRootProps()}
                     className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
                       isDragActive
-                        ? 'border-primary-500 bg-primary-50'
-                        : 'border-academic-300 hover:border-academic-400'
+                        ? 'border-sapphire-500 bg-sapphire-50'
+                        : 'border-sapphire-300 hover:border-sapphire-400'
                     }`}
                   >
                     <input {...getInputProps()} />
-                    <Upload className="w-12 h-12 text-academic-400 mx-auto mb-4" />
-                    <p className="text-academic-600 mb-2">
+                    <Upload className="w-12 h-12 text-sapphire-400 mx-auto mb-4" />
+                    <p className="text-sapphire-600 mb-2">
                       {isDragActive
                         ? 'Drop the files here...'
                         : 'Drag & drop files here, or click to select files'
                       }
                     </p>
-                    <p className="text-sm text-academic-500">Maximum file size: 10MB</p>
+                    <p className="text-sm text-sapphire-500">Maximum file size: 10MB</p>
                   </div>
 
                   {files.length > 0 && (
                     <div className="mt-4 space-y-2">
-                      <h3 className="font-medium text-academic-900">Uploaded Files:</h3>
+                      <h3 className="font-medium text-sapphire-900">Uploaded Files:</h3>
                       {files.map((file, index) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-academic-50 rounded-lg">
+                        <div key={index} className="flex items-center justify-between p-3 bg-sapphire-50 rounded-lg">
                           <div className="flex items-center space-x-2">
-                            <FileText className="w-5 h-5 text-academic-500" />
-                            <span className="text-sm text-academic-700">{file.name}</span>
-                            <span className="text-xs text-academic-500">
+                            <FileText className="w-5 h-5 text-sapphire-500" />
+                            <span className="text-sm text-sapphire-700">{file.name}</span>
+                            <span className="text-xs text-sapphire-500">
                               ({(file.size / 1024 / 1024).toFixed(2)} MB)
                             </span>
                           </div>
@@ -481,24 +489,24 @@ export default function RequestPage() {
 
                 {/* Selected Maker Summary */}
                 {selectedMakerData && (
-                  <div className="card bg-primary-50 border-primary-200">
-                    <h2 className="text-xl font-semibold text-primary-900 mb-4">Assignment Summary</h2>
+                  <div className="card bg-sapphire-50 border-sapphire-200">
+                    <h2 className="text-xl font-semibold text-sapphire-900 mb-4">Assignment Summary</h2>
                     <div className="space-y-3">
                       <div className="flex justify-between">
-                        <span className="text-primary-700">Assignment Maker:</span>
-                        <span className="font-medium text-primary-900">{selectedMakerData.name}</span>
+                        <span className="text-sapphire-700">Assignment Maker:</span>
+                        <span className="font-medium text-sapphire-900">{selectedMakerData.name}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-primary-700">Department:</span>
-                        <span className="font-medium text-primary-900">{selectedMakerData.department.name}</span>
+                        <span className="text-sapphire-700">Department:</span>
+                        <span className="font-medium text-sapphire-900">{selectedMakerData.department.name}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-primary-700">Service Fee:</span>
-                        <span className="font-medium text-primary-900">{selectedMakerData.department.serviceFee} Birr</span>
+                        <span className="text-sapphire-700">Service Fee:</span>
+                        <span className="font-medium text-sapphire-900">{selectedMakerData.department.serviceFee} Birr</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-primary-700">Contact:</span>
-                        <span className="font-medium text-primary-900">{selectedMakerData.phone}</span>
+                        <span className="text-sapphire-700">Contact:</span>
+                        <span className="font-medium text-sapphire-900">{selectedMakerData.phone}</span>
                       </div>
                     </div>
                   </div>

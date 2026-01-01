@@ -3,10 +3,11 @@ import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
+import { error } from 'console'
 
 export async function POST(request: NextRequest) {
   try {
-    console.log('Registration request received')
+    console.error('Registration error:', error)
     
     let body: any = {}
     let paymentScreenshot: File | null = null

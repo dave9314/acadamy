@@ -6,19 +6,18 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const departmentId = searchParams.get('departmentId')
     
-    if (!departmentId) {
-      return NextResponse.json(
-        { error: 'Department ID is required' },
-        { status: 400 }
-      )
+    let whereClause: any = {
+      isApproved: true,
+      paymentApproved: true
+    }
+
+    // If departmentId is provided, filter by department
+    if (departmentId) {
+      whereClause.departmentId = departmentId
     }
 
     const makers = await prisma.user.findMany({
-      where: {
-        departmentId,
-        isApproved: true,
-        paymentApproved: true
-      },
+      where: whereClause,
       include: {
         department: true
       },

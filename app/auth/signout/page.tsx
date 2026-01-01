@@ -26,8 +26,8 @@ export default function SignOutPage() {
 
   if (status === 'loading') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      <div className="min-h-screen bg-gradient-to-br from-sapphire-50 via-sapphire-100 to-sapphire-200 flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-sapphire-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     )
   }
@@ -37,11 +37,11 @@ export default function SignOutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-sapphire-50 via-sapphire-100 to-sapphire-200 flex items-center justify-center p-4 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-indigo-400/20 to-pink-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-sapphire-300/30 to-sapphire-500/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-sapphire-400/20 to-sapphire-600/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="w-full max-w-md relative z-10">
@@ -62,27 +62,27 @@ export default function SignOutPage() {
                 <LogOut className="w-12 h-12 text-white" />
               </div>
             </motion.div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-3">
+            <h1 className="text-3xl font-bold text-sapphire-800 mb-3">
               Sign Out
             </h1>
-            <p className="text-gray-600">
+            <p className="text-sapphire-600">
               Are you sure you want to sign out of your account?
             </p>
           </div>
 
           {/* User Info */}
           {session?.user && (
-            <div className="bg-gray-50 rounded-xl p-4 mb-8">
+            <div className="bg-sapphire-50 rounded-xl p-4 mb-8">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-sapphire-500 to-sapphire-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-lg">
                     {session.user.name?.charAt(0).toUpperCase()}
                   </span>
                 </div>
                 <div className="text-left">
-                  <p className="font-semibold text-gray-800">{session.user.name}</p>
-                  <p className="text-sm text-gray-600">{session.user.email}</p>
-                  <p className="text-xs text-gray-500 capitalize">{session.user.role}</p>
+                  <p className="font-semibold text-sapphire-800">{session.user.name}</p>
+                  <p className="text-sm text-sapphire-600">{session.user.email}</p>
+                  <p className="text-xs text-sapphire-500 capitalize">{session.user.role}</p>
                 </div>
               </div>
             </div>
@@ -100,15 +100,15 @@ export default function SignOutPage() {
             
             <Link
               href={session?.user?.role === 'admin' ? '/admin' : '/dashboard'}
-              className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-200 transition-all duration-300 flex items-center justify-center space-x-2 font-semibold"
+              className="w-full bg-sapphire-100 text-sapphire-700 px-6 py-3 rounded-xl hover:bg-sapphire-200 transition-all duration-300 flex items-center justify-center space-x-2 font-semibold"
             >
               <span>Cancel</span>
             </Link>
           </div>
 
           {/* Footer */}
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-500">
+          <div className="mt-8 pt-6 border-t border-sapphire-200">
+            <p className="text-sm text-sapphire-500">
               You'll be redirected to the home page after signing out
             </p>
           </div>

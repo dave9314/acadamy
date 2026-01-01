@@ -12,10 +12,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
     
     const variants = {
-      primary: 'bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-500',
-      secondary: 'bg-academic-200 hover:bg-academic-300 text-academic-800 focus:ring-academic-400',
-      outline: 'border border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500',
-      ghost: 'text-academic-600 hover:bg-academic-100 focus:ring-academic-400',
+      primary: 'bg-sapphire-600 hover:bg-sapphire-700 text-white focus:ring-sapphire-500',
+      secondary: 'bg-sapphire-200 hover:bg-sapphire-300 text-sapphire-800 focus:ring-sapphire-400',
+      outline: 'border border-sapphire-600 text-sapphire-600 hover:bg-sapphire-50 focus:ring-sapphire-500',
+      ghost: 'text-sapphire-600 hover:bg-sapphire-100 focus:ring-sapphire-400',
       danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500'
     }
     

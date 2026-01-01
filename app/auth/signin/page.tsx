@@ -71,11 +71,11 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-sapphire-50 via-sapphire-100 to-sapphire-200 flex items-center justify-center p-4 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-indigo-400/20 to-pink-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-sapphire-300/30 to-sapphire-500/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-sapphire-400/20 to-sapphire-600/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="w-full max-w-md relative z-10">
@@ -86,7 +86,7 @@ export default function SignInPage() {
         >
           <Link 
             href="/"
-            className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-800 mb-8 transition-colors font-medium"
+            className="inline-flex items-center space-x-2 text-sapphire-600 hover:text-sapphire-800 mb-8 transition-colors font-medium"
           >
             <ArrowLeft className="w-5 h-5" />
             <span>Back to Home</span>
@@ -106,14 +106,14 @@ export default function SignInPage() {
               transition={{ delay: 0.2, type: "spring" }}
               className="flex justify-center mb-6"
             >
-              <div className="p-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl">
+              <div className="p-4 bg-gradient-to-br from-sapphire-500 to-sapphire-600 rounded-2xl shadow-2xl">
                 <BookOpen className="w-12 h-12 text-white" />
               </div>
             </motion.div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-3">
+            <h1 className="text-3xl font-bold text-sapphire-800 mb-3">
               Welcome Back!
             </h1>
-            <p className="text-gray-600">
+            <p className="text-sapphire-600">
               Sign in to your account
             </p>
           </div>
@@ -135,14 +135,14 @@ export default function SignInPage() {
           )}
 
           {/* User Type Toggle */}
-          <div className="flex bg-gray-100 rounded-xl p-1 mb-8">
+          <div className="flex bg-sapphire-100 rounded-xl p-1 mb-8">
             <button
               type="button"
               onClick={() => setUserType('user')}
               className={`flex-1 py-3 px-4 rounded-lg text-sm font-semibold transition-all duration-300 ${
                 userType === 'user'
-                  ? 'bg-white text-blue-600 shadow-md'
-                  : 'text-gray-600 hover:text-gray-800'
+                  ? 'bg-white text-sapphire-600 shadow-md'
+                  : 'text-sapphire-600 hover:text-sapphire-800'
               }`}
             >
               Assignment Maker
@@ -152,8 +152,8 @@ export default function SignInPage() {
               onClick={() => setUserType('admin')}
               className={`flex-1 py-3 px-4 rounded-lg text-sm font-semibold transition-all duration-300 ${
                 userType === 'admin'
-                  ? 'bg-white text-blue-600 shadow-md'
-                  : 'text-gray-600 hover:text-gray-800'
+                  ? 'bg-white text-sapphire-600 shadow-md'
+                  : 'text-sapphire-600 hover:text-sapphire-800'
               }`}
             >
               Admin
@@ -163,11 +163,11 @@ export default function SignInPage() {
           {/* Form */}
           <form onSubmit={handleLogin} className="space-y-6">
             <div>
-              <label className="block text-gray-700 text-sm font-semibold mb-2">
+              <label className="block text-sapphire-700 text-sm font-semibold mb-2">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-sapphire-400" />
                 <input
                   type="email"
                   value={formData.email}
@@ -180,11 +180,11 @@ export default function SignInPage() {
             </div>
 
             <div>
-              <label className="block text-gray-700 text-sm font-semibold mb-2">
+              <label className="block text-sapphire-700 text-sm font-semibold mb-2">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-sapphire-400" />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={formData.password}
@@ -196,7 +196,7 @@ export default function SignInPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sapphire-400 hover:text-sapphire-600"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -224,7 +224,7 @@ export default function SignInPage() {
             <div className="text-center mt-8">
               <Link
                 href="/auth/register"
-                className="text-gray-600 hover:text-gray-800 transition-colors font-medium"
+                className="text-sapphire-600 hover:text-sapphire-800 transition-colors font-medium"
               >
                 Don't have an account? Register here
               </Link>

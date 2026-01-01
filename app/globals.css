@@ -8,17 +8,17 @@
   }
   
   body {
-    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 text-slate-900;
+    @apply bg-gradient-to-br from-sapphire-50 via-sapphire-100 to-sapphire-200 text-sapphire-900;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-blue-300;
+    @apply bg-gradient-to-r from-sapphire-500 to-sapphire-600 hover:from-sapphire-600 hover:to-sapphire-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-sapphire-300;
   }
   
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-gray-200;
+    @apply bg-white hover:bg-sapphire-50 text-sapphire-700 font-semibold py-3 px-6 rounded-xl border border-sapphire-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-sapphire-200;
   }
   
   .btn-danger {
@@ -26,27 +26,27 @@
   }
   
   .card {
-    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1;
+    @apply bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-sapphire-200/30 p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1;
   }
   
   .card-glass {
-    @apply bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-8 shadow-2xl;
+    @apply bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 p-8 shadow-2xl;
   }
   
   .input-field {
-    @apply w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-300 focus:border-blue-500 transition-all duration-200 bg-white/80 backdrop-blur-sm;
+    @apply w-full px-4 py-3 border border-sapphire-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-sapphire-300 focus:border-sapphire-500 transition-all duration-200 bg-white/90 backdrop-blur-sm;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800;
+    @apply bg-gradient-to-br from-sapphire-500 via-sapphire-600 to-sapphire-700;
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-sapphire-500 to-sapphire-600 bg-clip-text text-transparent;
   }
   
   .glass-effect {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+    @apply bg-white/15 backdrop-blur-md border border-white/25;
   }
   
   .floating-animation {
@@ -54,7 +54,7 @@
   }
   
   .pulse-glow {
-    @apply animate-pulse shadow-lg shadow-blue-500/25;
+    @apply animate-pulse shadow-lg shadow-sapphire-500/25;
   }
 }
 
@@ -69,7 +69,7 @@
 }
 
 .shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(231,240,250,0.4), transparent);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }

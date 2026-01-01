@@ -21,7 +21,7 @@ export default function AuthErrorPage() {
   const errorMessage = error ? (errorMessages[error] || errorMessages['Default']) : errorMessages['Default']
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-pink-50 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-sapphire-50 via-sapphire-100 to-sapphire-200 flex items-center justify-center p-4 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-red-400/20 to-pink-400/20 rounded-full blur-3xl animate-float"></div>
@@ -46,10 +46,10 @@ export default function AuthErrorPage() {
                 <AlertCircle className="w-12 h-12 text-white" />
               </div>
             </motion.div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-3">
+            <h1 className="text-3xl font-bold text-sapphire-800 mb-3">
               Authentication Error
             </h1>
-            <p className="text-gray-600">
+            <p className="text-sapphire-600">
               {errorMessage}
             </p>
           </div>
@@ -67,7 +67,7 @@ export default function AuthErrorPage() {
           <div className="space-y-4">
             <Link
               href="/auth/signin"
-              className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 flex items-center justify-center space-x-2 font-semibold shadow-lg"
+              className="w-full bg-gradient-to-r from-sapphire-500 to-sapphire-600 text-white px-6 py-3 rounded-xl hover:from-sapphire-600 hover:to-sapphire-700 transition-all duration-300 flex items-center justify-center space-x-2 font-semibold shadow-lg"
             >
               <RefreshCw className="w-5 h-5" />
               <span>Try Again</span>
@@ -75,7 +75,7 @@ export default function AuthErrorPage() {
             
             <Link
               href="/"
-              className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-200 transition-all duration-300 flex items-center justify-center space-x-2 font-semibold"
+              className="w-full bg-sapphire-100 text-sapphire-700 px-6 py-3 rounded-xl hover:bg-sapphire-200 transition-all duration-300 flex items-center justify-center space-x-2 font-semibold"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Home</span>
@@ -83,8 +83,8 @@ export default function AuthErrorPage() {
           </div>
 
           {/* Help Text */}
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-500">
+          <div className="mt-8 pt-6 border-t border-sapphire-200">
+            <p className="text-sm text-sapphire-500">
               If you continue to experience issues, please contact support.
             </p>
           </div>

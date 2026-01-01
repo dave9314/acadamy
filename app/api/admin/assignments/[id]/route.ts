@@ -17,7 +17,7 @@ export async function PATCH(
       )
     }
 
-    const { isApprovedByAdmin, status } = await request.json()
+    const { isApprovedByAdmin, status, solutionDelivered } = await request.json()
     const assignmentId = params.id
 
     const updateData: any = {}
@@ -26,12 +26,15 @@ export async function PATCH(
       // If rejecting, set status to REJECTED
       if (!isApprovedByAdmin) {
         updateData.status = 'REJECTED'
-      } else {
+      } else if (status !== 'COMPLETED') {
         updateData.status = 'IN_PROGRESS'
       }
     }
     if (status) {
       updateData.status = status
+    }
+    if (typeof solutionDelivered === 'boolean') {
+      updateData.solutionDelivered = solutionDelivered
     }
 
     const assignment = await prisma.assignment.update({
@@ -42,6 +45,20 @@ export async function PATCH(
         assignedTo: true
       }
     })
+
+    // If admin approves a completed assignment with AI detection, finalize the payment
+    if (isApprovedByAdmin && assignment.status === 'COMPLETED' && assignment.aiDetectionScreenshot) {
+      // Ensure payment is marked as completed
+      await prisma.payment.updateMany({
+        where: {
+          assignmentId: assignmentId,
+          type: 'COMMISSION'
+        },
+        data: {
+          status: 'COMPLETED'
+        }
+      })
+    }
     
     return NextResponse.json(assignment)
   } catch (error) {

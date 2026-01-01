@@ -141,11 +141,11 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-sapphire-50 via-sapphire-100 to-sapphire-200 flex items-center justify-center p-4 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-indigo-400/20 to-pink-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-sapphire-300/30 to-sapphire-500/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-sapphire-400/20 to-sapphire-600/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="w-full max-w-md relative z-10">
@@ -156,7 +156,7 @@ export default function RegisterPage() {
         >
           <Link 
             href="/auth/signin"
-            className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-800 mb-8 transition-colors font-medium"
+            className="inline-flex items-center space-x-2 text-sapphire-600 hover:text-sapphire-800 mb-8 transition-colors font-medium"
           >
             <ArrowLeft className="w-5 h-5" />
             <span>Back to Sign In</span>
@@ -176,14 +176,14 @@ export default function RegisterPage() {
               transition={{ delay: 0.2, type: "spring" }}
               className="flex justify-center mb-6"
             >
-              <div className="p-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl">
+              <div className="p-4 bg-gradient-to-br from-sapphire-500 to-sapphire-600 rounded-2xl shadow-2xl">
                 <BookOpen className="w-12 h-12 text-white" />
               </div>
             </motion.div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-3">
+            <h1 className="text-3xl font-bold text-sapphire-800 mb-3">
               Join Our Platform
             </h1>
-            <p className="text-gray-600">
+            <p className="text-sapphire-600">
               Step {step} of 2: {step === 1 ? 'Basic Information' : 'Payment & Verification'}
             </p>
           </div>
@@ -191,12 +191,12 @@ export default function RegisterPage() {
           {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-gray-600">Progress</span>
-              <span className="text-sm font-medium text-gray-600">{step}/2</span>
+              <span className="text-sm font-medium text-sapphire-600">Progress</span>
+              <span className="text-sm font-medium text-sapphire-600">{step}/2</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-sapphire-200 rounded-full h-2">
               <div 
-                className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300"
+                className="bg-gradient-to-r from-sapphire-500 to-sapphire-600 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${(step / 2) * 100}%` }}
               ></div>
             </div>
@@ -206,11 +206,11 @@ export default function RegisterPage() {
             /* Step 1: Basic Information */
             <form onSubmit={handleBasicInfo} className="space-y-6">
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-2">
+                <label className="block text-sapphire-700 text-sm font-semibold mb-2">
                   Full Name *
                 </label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-sapphire-400" />
                   <input
                     type="text"
                     value={formData.name}
@@ -223,11 +223,11 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-2">
+                <label className="block text-sapphire-700 text-sm font-semibold mb-2">
                   Email Address *
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-sapphire-400" />
                   <input
                     type="email"
                     value={formData.email}
@@ -240,11 +240,11 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-2">
+                <label className="block text-sapphire-700 text-sm font-semibold mb-2">
                   Password *
                 </label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-sapphire-400" />
                   <input
                     type={showPassword ? "text" : "password"}
                     value={formData.password}
@@ -256,7 +256,7 @@ export default function RegisterPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sapphire-400 hover:text-sapphire-600"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -264,11 +264,11 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-2">
+                <label className="block text-sapphire-700 text-sm font-semibold mb-2">
                   Phone Number *
                 </label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-sapphire-400" />
                   <input
                     type="tel"
                     value={formData.phone}
@@ -282,7 +282,7 @@ export default function RegisterPage() {
 
               <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <label className="block text-gray-700 text-sm font-semibold mb-2">
+                  <label className="block text-sapphire-700 text-sm font-semibold mb-2">
                     WhatsApp Number
                   </label>
                   <input
@@ -294,7 +294,7 @@ export default function RegisterPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-700 text-sm font-semibold mb-2">
+                  <label className="block text-sapphire-700 text-sm font-semibold mb-2">
                     Telegram Username
                   </label>
                   <input
@@ -307,14 +307,14 @@ export default function RegisterPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-4">
+              <div className="bg-gradient-to-r from-sapphire-50 to-sapphire-100 border border-sapphire-200 rounded-xl p-4">
                 <div className="flex items-start space-x-3">
-                  <div className="text-blue-600 mt-0.5">📱</div>
+                  <div className="text-sapphire-600 mt-0.5">📱</div>
                   <div>
-                    <p className="text-blue-900 text-sm font-semibold mb-1">
+                    <p className="text-sapphire-800 text-sm font-semibold mb-1">
                       Communication Required
                     </p>
-                    <p className="text-blue-800 text-sm">
+                    <p className="text-sapphire-700 text-sm">
                       <strong>Telegram username OR WhatsApp number is mandatory</strong> - Assignment solutions will be delivered through these channels.
                     </p>
                   </div>
@@ -322,7 +322,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-2">
+                <label className="block text-sapphire-700 text-sm font-semibold mb-2">
                   Department *
                 </label>
                 <select
@@ -360,7 +360,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-3">
+                <label className="block text-sapphire-700 text-sm font-semibold mb-3">
                   Select Payment Method *
                 </label>
                 <div className="grid grid-cols-2 gap-4">
@@ -369,13 +369,13 @@ export default function RegisterPage() {
                     onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'CBE' }))}
                     className={`p-4 border-2 rounded-xl transition-all ${
                       formData.paymentMethod === 'CBE'
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-sapphire-500 bg-sapphire-50'
+                        : 'border-sapphire-200 hover:border-sapphire-300'
                     }`}
                   >
                     <div className="text-center">
-                      <CreditCard className="w-8 h-8 mx-auto mb-2 text-blue-600" />
-                      <p className="font-semibold text-gray-800">CBE Bank</p>
+                      <CreditCard className="w-8 h-8 mx-auto mb-2 text-sapphire-600" />
+                      <p className="font-semibold text-sapphire-800">CBE Bank</p>
                     </div>
                   </button>
                   <button
@@ -383,13 +383,13 @@ export default function RegisterPage() {
                     onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'Telebirr' }))}
                     className={`p-4 border-2 rounded-xl transition-all ${
                       formData.paymentMethod === 'Telebirr'
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-sapphire-500 bg-sapphire-50'
+                        : 'border-sapphire-200 hover:border-sapphire-300'
                     }`}
                   >
                     <div className="text-center">
                       <Phone className="w-8 h-8 mx-auto mb-2 text-green-600" />
-                      <p className="font-semibold text-gray-800">Telebirr</p>
+                      <p className="font-semibold text-sapphire-800">Telebirr</p>
                     </div>
                   </button>
                 </div>
@@ -399,7 +399,7 @@ export default function RegisterPage() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-xl p-4"
+                  className="bg-gradient-to-r from-green-50 to-sapphire-50 border border-green-200 rounded-xl p-4"
                 >
                   <h3 className="font-semibold text-green-800 mb-2">
                     Payment Instructions
@@ -408,7 +408,7 @@ export default function RegisterPage() {
                     Send <strong>300 Birr</strong> to the following {formData.paymentMethod} account:
                   </p>
                   <div className="bg-white rounded-lg p-3 border">
-                    <p className="text-lg font-mono font-bold text-center text-gray-800">
+                    <p className="text-lg font-mono font-bold text-center text-sapphire-800">
                       {getAccountNumber()}
                     </p>
                   </div>
@@ -419,10 +419,10 @@ export default function RegisterPage() {
               )}
 
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-2">
+                <label className="block text-sapphire-700 text-sm font-semibold mb-2">
                   Payment Screenshot *
                 </label>
-                <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-gray-400 transition-colors">
+                <div className="border-2 border-dashed border-sapphire-300 rounded-xl p-6 text-center hover:border-sapphire-400 transition-colors">
                   <input
                     type="file"
                     accept="image/*"
@@ -447,12 +447,12 @@ export default function RegisterPage() {
                       </div>
                     ) : (
                       <div className="space-y-3">
-                        <Upload className="w-12 h-12 text-gray-400 mx-auto" />
+                        <Upload className="w-12 h-12 text-sapphire-400 mx-auto" />
                         <div>
-                          <p className="text-gray-600 font-medium">
+                          <p className="text-sapphire-600 font-medium">
                             Upload Payment Screenshot
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-sapphire-500">
                             PNG, JPG up to 5MB
                           </p>
                         </div>
@@ -466,7 +466,7 @@ export default function RegisterPage() {
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="flex-1 py-3 px-4 border border-gray-300 rounded-xl text-gray-700 font-semibold hover:bg-gray-50 transition-colors"
+                  className="flex-1 py-3 px-4 border border-sapphire-300 rounded-xl text-sapphire-700 font-semibold hover:bg-sapphire-50 transition-colors"
                 >
                   Back
                 </button>

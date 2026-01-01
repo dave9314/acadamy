@@ -4,14 +4,20 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
-    "setup": "node setup.js"
+    "db:migrate": "prisma migrate deploy",
+    "db:reset": "node reset-database.js",
+    "db:update": "node update-database.js",
+    "test:reports": "node test-reports-api.js",
+    "setup": "node setup.js",
+    "postinstall": "prisma generate",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "next": "14.0.4",

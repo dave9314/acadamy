@@ -4,12 +4,22 @@ A professional academic services platform that connects students with verified a
 
 ## Features
 
+### Core Features
 - **User Authentication**: Secure login/registration for assignment makers and admins
 - **Department Management**: Organized by academic departments with custom service fees
 - **Assignment Submission**: Easy-to-use interface for submitting assignments with file uploads
 - **Admin Dashboard**: Complete management system for users and assignments
 - **Maker Dashboard**: Interface for assignment makers to view and manage their assignments
 - **Payment Tracking**: Built-in payment and fee management system
+
+### New Features ✨
+- **Balance & Earnings Tracking**: Real-time balance and earnings display for assignment makers
+- **AI Detection Integration**: Mandatory AI detection screenshots for assignment completion
+- **Report System**: Users can report issues with assignment makers or platform problems
+- **Announcement System**: Admins can broadcast messages to all users or specific users
+- **User Management**: Admin can approve, reject, or delete users with proper safeguards
+- **Performance Optimized**: Lazy loading and skeleton components for better user experience
+- **Sapphire UI Theme**: Beautiful, consistent color scheme throughout the application
 
 ## Tech Stack
 
@@ -56,8 +66,23 @@ JWT_SECRET="your-jwt-secret-here"
 
 4. Set up the database
 ```bash
+# Push database schema
 npm run db:push
+
+# Generate Prisma client
 npm run db:generate
+
+# Seed the database with sample data
+npm run db:seed
+```
+
+**Note**: If you encounter issues with the reports or announcements features, make sure your database schema is up to date:
+```bash
+# Test if all models exist
+node test-reports-api.js
+
+# If you see table errors, run:
+npx prisma db push --force-reset
 npm run db:seed
 ```
 

@@ -21,13 +21,16 @@ model User {
   paymentScreenshot String?
   paymentApproved   Boolean  @default(false)
   departmentId      String?
+  balance           Int      @default(0)
+  totalEarnings     Int      @default(0)
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
   department        Department? @relation(fields: [departmentId], references: [id])
   assignments       Assignment[]
-  announcements     Announcement[]
+  announcements     UserAnnouncement[]
   payments          Payment[]
+  reports           Report[]
 
   @@map("users")
 }
@@ -73,6 +76,7 @@ model Assignment {
   isApprovedByAdmin Boolean           @default(false)
   solutionDelivered Boolean           @default(false)
   approvalScreenshot String?
+  aiDetectionScreenshot String?
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
 
@@ -83,6 +87,7 @@ model Assignment {
   assignedTo        User?      @relation(fields: [assignedToId], references: [id])
   aiDetectionReport AiDetectionReport?
   payment           Payment?
+  reports           Report[]
 
   @@map("assignments")
 }
@@ -98,17 +103,52 @@ model Comment {
   @@map("comments")
 }
 
-model Announcement {
-  id        String   @id @default(cuid())
-  title     String
-  content   String
-  fromId    String
-  isRead    Boolean  @default(false)
-  createdAt DateTime @default(now())
+model Report {
+  id              String      @id @default(cuid())
+  title           String
+  description     String
+  assignmentId    String?
+  reportedUserId  String?
+  reporterName    String?
+  reporterEmail   String?
+  reporterPhone   String?
+  status          ReportStatus @default(PENDING)
+  adminResponse   String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
 
-  from      User @relation(fields: [fromId], references: [id])
+  assignment      Assignment? @relation(fields: [assignmentId], references: [id])
+  reportedUser    User?       @relation(fields: [reportedUserId], references: [id])
+
+  @@map("reports")
+}
+
+model Announcement {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  targetType  AnnouncementTarget @default(ALL)
+  targetUserId String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userAnnouncements UserAnnouncement[]
 
   @@map("announcements")
+}
+
+model UserAnnouncement {
+  id             String   @id @default(cuid())
+  userId         String
+  announcementId String
+  isRead         Boolean  @default(false)
+  readAt         DateTime?
+
+  user           User         @relation(fields: [userId], references: [id])
+  announcement   Announcement @relation(fields: [announcementId], references: [id])
+
+  @@unique([userId, announcementId])
+  @@map("user_announcements")
 }
 
 model Payment {
@@ -156,4 +196,16 @@ enum PaymentStatus {
   PENDING
   COMPLETED
   FAILED
+}
+
+enum ReportStatus {
+  PENDING
+  INVESTIGATING
+  RESOLVED
+  DISMISSED
+}
+
+enum AnnouncementTarget {
+  ALL
+  SPECIFIC_USER
 }

@@ -8,17 +8,30 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Your custom sapphire veil palette
+        sapphire: {
+          50: '#E7F0FA',   // Light gray/lavender
+          100: '#D4E4F7',
+          200: '#A9C9EF',
+          300: '#7BA4D0',  // Light blue
+          400: '#5B8BC4',
+          500: '#2E5E99',  // Medium blue
+          600: '#1E4A7A',
+          700: '#0D2440',  // Dark navy
+          800: '#081A2E',
+          900: '#04101C',
+        },
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+          50: '#E7F0FA',
+          100: '#D4E4F7',
+          200: '#A9C9EF',
+          300: '#7BA4D0',
+          400: '#5B8BC4',
+          500: '#2E5E99',
+          600: '#1E4A7A',
+          700: '#0D2440',
+          800: '#081A2E',
+          900: '#04101C',
         },
         academic: {
           50: '#f8fafc',
