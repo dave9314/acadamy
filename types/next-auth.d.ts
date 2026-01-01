@@ -7,28 +7,31 @@ declare module 'next-auth' {
       email: string
       name: string
       role: string
-      isApproved: boolean
-      registrationFee: boolean
-      paymentApproved: boolean
-      department: string
+      isApproved?: boolean
+      registrationFee?: boolean
+      paymentApproved?: boolean
+      department?: string
     }
   }
 
   interface User {
+    id: string
+    email: string
+    name: string
     role: string
-    isApproved: boolean
-    registrationFee: boolean
-    paymentApproved: boolean
-    department: string
+    isApproved?: boolean
+    registrationFee?: boolean
+    paymentApproved?: boolean
+    department?: string
   }
 }
 
 declare module 'next-auth/jwt' {
   interface JWT {
     role: string
-    isApproved: boolean
-    registrationFee: boolean
-    paymentApproved: boolean
-    department: string
+    isApproved?: boolean
+    registrationFee?: boolean
+    paymentApproved?: boolean
+    department?: string
   }
 }

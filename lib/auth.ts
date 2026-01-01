@@ -69,7 +69,7 @@ export const authOptions: NextAuthOptions = {
               isApproved: user.isApproved,
               registrationFee: user.registrationFee,
               paymentApproved: user.paymentApproved,
-              department: user.department?.name
+              department: user.department?.name || ''
             }
           }
         } catch (error) {
@@ -101,16 +101,12 @@ export const authOptions: NextAuthOptions = {
       if (token) {
         session.user.id = token.sub!
         session.user.role = token.role as string
-        session.user.isApproved = token.isApproved as boolean
-        session.user.registrationFee = token.registrationFee as boolean
-        session.user.paymentApproved = token.paymentApproved as boolean
-        session.user.department = token.department as string
+        session.user.isApproved = token.isApproved as boolean | undefined
+        session.user.registrationFee = token.registrationFee as boolean | undefined
+        session.user.paymentApproved = token.paymentApproved as boolean | undefined
+        session.user.department = token.department as string | undefined
       }
       return session
-    },
-    async signOut({ token, session }) {
-      // Clear any custom session data if needed
-      return true
     }
   },
   pages: {
